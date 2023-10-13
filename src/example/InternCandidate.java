@@ -35,4 +35,9 @@ public class InternCandidate extends Candidate{
     public void setUniversityName(String universityName) {
         this.universityName = universityName;
     }
+
+    @Override
+    public String toString() {
+        return this.getId() + "   " + this.getLastname() + " " + this.getFirstname() + "    " + this.getRange();
+    }
 }

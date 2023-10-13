@@ -25,4 +25,9 @@ public class ExperiencedCandidate extends Candidate{
     public void setProSkill(String proSkill) {
         this.proSkill = proSkill;
     }
+
+    @Override
+    public String toString() {
+        return this.getId() + "   " + this.getLastname() + " " + this.getFirstname() + "    " + this.getRange();
+    }
 }

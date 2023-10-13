@@ -35,4 +35,9 @@ public class FresherCandidate extends Candidate{
     public void setEducation(String education) {
         this.education = education;
     }
+
+    @Override
+    public String toString() {
+        return this.getId() + "   " + this.getLastname() + " " + this.getFirstname() + "    " + this.getRange();
+    }
 }

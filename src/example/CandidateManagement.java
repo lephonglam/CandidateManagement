@@ -99,4 +99,206 @@ public class CandidateManagement {
 
         return new Candidate(id, firstname, lastname, dob, address, phone, email, 0);
     }
+
+    public void addExperiencedCandidate(){
+        do {
+            Candidate candidate = enterCandidate();
+            boolean found = false;
+            if(!candidates.isEmpty()){
+                for(Candidate c : candidates){
+                    if(c.getId().equalsIgnoreCase(candidate.getId())){
+                        System.out.println("Candidate is existed!");
+                        found = true;
+                        break;
+                    }
+                }
+            }
+            if(found){
+                continue;
+            }
+            ExperiencedCandidate experiencedCandidate = (ExperiencedCandidate) candidate;
+            experiencedCandidate.setRange(1);
+            int expInYear;
+            do {
+                try {
+                    System.out.print("Enter candidate's experience of year: ");
+                    expInYear = INPUT.nextInt();
+                    INPUT.nextLine();
+                }
+                catch (Exception e){
+                    INPUT.nextLine();
+                    expInYear = 0;
+                    System.out.println("Candidate's experience of year is not correct format!");
+                }
+                if(expInYear <= 0){
+                    System.out.println("Candidate's experience of year must be a positive digit!");
+                }
+            }while (expInYear <= 0);
+
+            String proSkill;
+            do {
+                System.out.print("Enter candidate's professional skill: ");
+                proSkill = INPUT.nextLine();
+                if(proSkill.trim().isEmpty()){
+                    System.out.println("Please enter candidate's professional skill!");
+                }
+            }while (proSkill.trim().isEmpty());
+            experiencedCandidate.setExpInYear(expInYear);
+            experiencedCandidate.setProSkill(proSkill);
+            candidates.add(experiencedCandidate);
+
+            String choose;
+            do {
+                System.out.print("Do you want to continue? (y/n): ");
+                choose = INPUT.next();
+                INPUT.nextLine();
+                if(!choose.equalsIgnoreCase("y") && !choose.equalsIgnoreCase("n")){
+                    System.out.println("Please choose y or n!");
+                }
+            }while (!choose.equalsIgnoreCase("y") && !choose.equalsIgnoreCase("n"));
+            if (choose.equalsIgnoreCase("n")){
+                break;
+            }
+        }while(true);
+    }
+
+    public void addFresherCandidate(){
+        do {
+            Candidate candidate = enterCandidate();
+            boolean found = false;
+            if(!candidates.isEmpty()){
+                for(Candidate c : candidates){
+                    if(c.getId().equalsIgnoreCase(candidate.getId())){
+                        System.out.println("Candidate is existed!");
+                        found = true;
+                        break;
+                    }
+                }
+            }
+            if(found){
+                continue;
+            }
+            FresherCandidate fresherCandidate = (FresherCandidate) candidate;
+            fresherCandidate.setRange(2);
+            String graduationDate;
+            do {
+                System.out.print("Enter candidate's graduation date: ");
+                graduationDate = INPUT.next();
+                INPUT.nextLine();
+                if(!graduationDate.matches("\\d{2}\\d{2}\\d{4}")){
+                    System.out.println("Please correctly enter candidate's graduation date!");
+                }
+            }while (!graduationDate.matches("\\d{2}\\d{2}\\d{4}"));
+            String graduationRank;
+            do {
+                System.out.print("Enter candidate's graduation rank: ");
+                graduationRank = INPUT.next();
+                INPUT.nextLine();
+                if(!graduationRank.equalsIgnoreCase("Excellent") && !graduationRank.equalsIgnoreCase("Good")
+                && !graduationRank.equalsIgnoreCase("Average") && !graduationRank.equalsIgnoreCase("Poor")){
+                    System.out.println("Please correctly enter candidate's graduation rank!");
+                }
+            }while (!graduationRank.equalsIgnoreCase("Excellent") && !graduationRank.equalsIgnoreCase("Good")
+                    && !graduationRank.equalsIgnoreCase("Average") && !graduationRank.equalsIgnoreCase("Poor"));
+
+            String education;
+            do {
+                System.out.print("Enter candidate's education: ");
+                education = INPUT.nextLine();
+                if(education.trim().isEmpty()){
+                    System.out.println("Please enter candidate's education!");
+                }
+            }while (education.trim().isEmpty());
+            fresherCandidate.setGraduation_date(graduationDate);
+            fresherCandidate.setGraduation_rank(graduationRank);
+            fresherCandidate.setEducation(education);
+            candidates.add(fresherCandidate);
+
+            String choose;
+            do {
+                System.out.print("Do you want to continue? (y/n): ");
+                choose = INPUT.next();
+                INPUT.nextLine();
+                if(!choose.equalsIgnoreCase("y") && !choose.equalsIgnoreCase("n")){
+                    System.out.println("Please choose y or n!");
+                }
+            }while (!choose.equalsIgnoreCase("y") && !choose.equalsIgnoreCase("n"));
+            if (choose.equalsIgnoreCase("n")){
+                break;
+            }
+        }while(true);
+    }
+
+    public void addInternCandidate(){
+        do {
+            Candidate candidate = enterCandidate();
+            boolean found = false;
+            if(!candidates.isEmpty()){
+                for(Candidate c : candidates){
+                    if(c.getId().equalsIgnoreCase(candidate.getId())){
+                        System.out.println("Candidate is existed!");
+                        found = true;
+                        break;
+                    }
+                }
+            }
+            if(found){
+                continue;
+            }
+            InternCandidate internCandidate = (InternCandidate) candidate;
+            internCandidate.setRange(3);
+            String major;
+            do {
+                System.out.print("Enter candidate's major: ");
+                major = INPUT.nextLine();
+                if(major.trim().isEmpty()){
+                    System.out.println("Please enter candidate's major!");
+                }
+            }while (major.trim().isEmpty());
+
+            int term;
+            do {
+                try {
+                    System.out.print("Enter candidate's term: ");
+                    term = INPUT.nextInt();
+                    INPUT.nextLine();
+                }
+                catch (Exception e){
+                    INPUT.nextLine();
+                    term = 0;
+                    System.out.println("Candidate's term is not correct format!");
+                }
+                if(term <= 0){
+                    System.out.println("Candidate's term must be a positive digit!");
+                }
+            }while (term <= 0);
+
+            String universityName;
+            do {
+                System.out.print("Enter candidate's university name: ");
+                universityName = INPUT.nextLine();
+                if(universityName.trim().isEmpty()){
+                    System.out.println("Please enter university name!");
+                }
+            }while (universityName.trim().isEmpty());
+
+            internCandidate.setMajor(major);
+            internCandidate.setTerm(term);
+            internCandidate.setUniversityName(universityName);
+            candidates.add(internCandidate);
+
+            String choose;
+            do {
+                System.out.print("Do you want to continue? (y/n): ");
+                choose = INPUT.next();
+                INPUT.nextLine();
+                if(!choose.equalsIgnoreCase("y") && !choose.equalsIgnoreCase("n")){
+                    System.out.println("Please choose y or n!");
+                }
+            }while (!choose.equalsIgnoreCase("y") && !choose.equalsIgnoreCase("n"));
+            if (choose.equalsIgnoreCase("n")){
+                break;
+            }
+        }while (true);
+    }
 }
